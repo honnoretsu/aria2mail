@@ -7,8 +7,8 @@ aria2 = dict(
 )
 mail = dict(
 	username = '',
+	password = '',
 	pop3 = '',
-	
 	smtp = '',
 	smtp_port = 587
 )
