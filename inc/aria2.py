@@ -1,14 +1,14 @@
 #-------------------------------------------------------------------------------
 # Name:        aria2
 # Purpose:
-#
+# 
 # Author:      EV500B
 #
 # Created:     15/09/2013
 # Copyright:   (c) EV500B 2013
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
-#!/usr/bin/env python
+#!/usr/bin/env python2.7
 
 import string
 import xmlrpclib
@@ -45,6 +45,8 @@ def connect():
            raise
 
 def addUrl(url):
+    if url == "" :
+      url = raw_input("Url please: ")
     s.aria2.addUri([url],{'dir':aria2_dir})								## Self explained
 
 def main():

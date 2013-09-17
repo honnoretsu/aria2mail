@@ -8,7 +8,7 @@
 # Copyright:   (c) EV500B 2013
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
-#!/usr/bin/env python
+#!/usr/bin/env python2.7
 import poplib, email, getpass
 import aria2
 
