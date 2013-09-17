@@ -10,20 +10,19 @@
 #-------------------------------------------------------------------------------
 #!/usr/bin/env python2.7
 import poplib, email, getpass
-import aria2
+import config
 
-POP3_SERVER = "pop.gmail.com"
-SMTP_SERVER = 'smtp.gmail.com'
-SMTP_PORT = 587
+POP3_SERVER = config.mail['pop3']
+SMTP_SERVER = config.mail['smtp']
+SMTP_PORT = config.mail['smtp_port']
 
-username = "peanutbutterlovero.o@gmail.com"
+username = config.mail['username']
 
 numMessages = int
 
 M = poplib.POP3_SSL
 
 def getAuth():
-    username = "peanutbutterlovero.o@gmail.com"
     global password
     password = getpass.getpass("Password: ")
 

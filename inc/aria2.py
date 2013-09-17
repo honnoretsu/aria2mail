@@ -15,12 +15,13 @@ import xmlrpclib
 import getpass
 import sys
 import socket
+import config
 
-aria2_dir = "/mnt/sda1/"
-aria2_host = "local.ev500b.69.mu"
+aria2_dir = config.aria2['dir']
+aria2_host = config.aria2['host']
 aria2_ip = socket.gethostbyname(aria2_host)
-aria2_port = 6800
-aria2_user = "dany12"
+aria2_port = config.aria2['port']
+aria2_user = config.aria2['username']
 
 def isOpen(address, port):
 	s = socket.socket()
