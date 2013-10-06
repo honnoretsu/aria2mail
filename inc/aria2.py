@@ -15,13 +15,16 @@ import xmlrpclib
 import getpass
 import sys
 import socket
-import config
+import ConfigParser
 
-aria2_dir = config.aria2['dir']
-aria2_host = config.aria2['host']
+parser = ConfigParser.ConfigParser()
+parser.read("config.ini")
+
+aria2_dir = parser.get("aria2","dir"]
+aria2_host = parser.get("aria2","host"]
 aria2_ip = socket.gethostbyname(aria2_host)
-aria2_port = config.aria2['port']
-aria2_user = config.aria2['username']
+aria2_port = parser.get("aria2","port"]
+aria2_user = parser.get("aria2","username"]
 
 def isOpen(address, port):
 	s = socket.socket()

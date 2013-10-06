@@ -9,39 +9,34 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 #!/usr/bin/env python2.7
-import poplib, email, getpass
-import config
+import poplib, email, getpass, string
+import ConfigParser
 
-POP3_SERVER = config.mail['pop3']
-SMTP_SERVER = config.mail['smtp']
-SMTP_PORT = config.mail['smtp_port']
+parser = ConfigParser.ConfigParser()
+parser.read("config.ini")
 
-username = config.mail['username']
+POP3_SERVER = parser.get("mail", "pop3")
+SMTP_SERVER = parser.get("mail", "smtp")
+SMTP_PORT = parser.get("mail", "smtp_port")
+username = parser.get("mail", "username")
+password = parser.get("mail", "password")
 
-numMessages = int
+numMessages = int(0)
 
 M = poplib.POP3_SSL
-
-def getAuth():
-    global password
-    password = getpass.getpass("Password: ")
 
 def connect():
     ## Connection to Email host
     global M
     M = poplib.POP3_SSL(POP3_SERVER)
 
-	##TODO : check for successful connection
-	##
     M.user(username)
     M.pass_(password)
     ## Connection done or failed
 
 def check():
-    numMessages = len(M.list()[1])
-    return numMessages
-
-
+    return len(M.list()[1])
+    
 def email_process(numMessages):
     print "\nNew Messages found : Processing\n"
     for i in range(numMessages):
@@ -65,10 +60,10 @@ def email_process(numMessages):
         print "\n- - - - - EOF - - - - -\n"		## Email separator
 
 def main():
-    getAuth()
     connect()
-
-    if check() > 0:
+    
+    numMessages = check()
+    if numMessages > 0:
         email_process(numMessages)
     else:
         print "No new messages"
